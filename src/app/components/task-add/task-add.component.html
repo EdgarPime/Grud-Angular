@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-body">
+        <form (submit)="addTask(newTitle, newDescription, newTiempo, newFuerza, newTipo)">
+            <div class="form-group">
+                <label for="title">Ingrese la Marca</label>
+                <input type="text" class="form-control" name="title" 
+                #newTitle>    
+            </div>
+
+            <div class="form-group">
+                <label for="title">Ingrese tamaño de motor</label>
+                <input type="text" class="form-control" name="description" 
+                #newDescription>    
+            </div>
+            <div class="form-group">
+                    <label for="title">Ingrese el año</label>
+                    <input type="text" class="form-control" name="tiempo" 
+                    #newTiempo>    
+            </div>
+            <div class="form-group">
+                    <label for="title">Ingrese los caballos de fuerza</label>
+                    <input type="text" class="form-control" name="fuerza" 
+                    #newFuerza>    
+            </div>
+            <div class="form-group">
+                    <label for="title">Tipo de vehiculo</label>
+                    <input type="text" class="form-control" name="tipo" 
+                    #newTipo>    
+            </div>
+            
+            <button  class="btn btn-primary"> Guardar </button>
+        </form>
+    </div>
+</div>

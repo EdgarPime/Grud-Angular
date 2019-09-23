@@ -1,0 +1,30 @@
+<div class="">
+    <div class="card mb-2">
+        <div class=" card-header d-flex justify-content-between align-item-center" >
+          {{task.title}}
+        <div class="align-item-center">
+          {{task.description}}
+        </div>
+        <div class="align-item-center">
+            {{task.tiempo}}
+        </div>
+        <div class="align-item-center">
+            {{task.fuerza}}
+        </div>
+        <div class="align-item-center">
+            {{task.tipo}}
+        </div>
+          <div>
+            <button class="btn btn-primary">
+              show
+            </button>
+            <button class="btn btn-danger" (click)="removeTask(task)">
+                delete
+              </button>
+          </div>
+        </div>
+        
+    </div>
+</div>
+
+
