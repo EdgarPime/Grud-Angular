@@ -1,20 +1,30 @@
-<div class="col-md-10 card-header d-flex justify-content-between align-item-center " >
-        Marca
-        <div class="align-item-center " >
-                Motor
-        </div>
-        <div class="align-item-center ">
-                Año
-        </div>
-        <div class="align-item-center ">
-                Fuerza
-        </div >
-        <div class="align-item-center ">
-                Tipo
-        </div>
-        <div class="align-item-center ">
-                Accion
-        </div>
-      </div>
-<app-task *ngFor="let task of tasks" [task]="task"></app-task>
+
+<table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Motor</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">Fuerza</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let task of tasks">
+                    <td> {{task.title}} </td>
+                    <td> {{task.description}} </td>
+                    <td> {{task.tiempo}} </td>
+                    <td> {{task.fuerza}} </td>
+                    <td> {{task.tipo}} </td>
+                    <td> 
+                            <app-task [task]="task"></app-task>
+                    </td>
+                  </tr>
+                 
+                  
+                </tbody>
+              </table>
+
+
 

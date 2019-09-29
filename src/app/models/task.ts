@@ -4,5 +4,5 @@ export interface Task {
     tiempo: string;
     fuerza: string;
     tipo: string;
-    // hide: boolean;
+    //hide: boolean;
 }

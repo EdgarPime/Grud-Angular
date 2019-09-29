@@ -1,34 +1,65 @@
-<div class="card">
+<div class="card bg-dark text-white">
     <div class="card-body">
-        <form (submit)="addTask(newTitle, newDescription, newTiempo, newFuerza, newTipo)">
+        <form  (submit)="addTask(formNew)" #formNew="ngForm" >
             <div class="form-group">
                 <label for="title">Ingrese la Marca</label>
-                <input type="text" class="form-control" name="title" 
-                #newTitle>    
+                <input type="text" class="form-control" name="title" [(ngModel)]="objetos.title" #title="ngModel"
+                minlength="2" maxlength="30" required pattern="[A-Z_a-z]+">    
+                <div *ngIf="title.touched && !title.valid">
+                   
+                    <div *ngIf="title.errors.required" class="alert alert-danger" role="alert">La marca es requerida</div> 
+                    <div *ngIf="title.errors.pattern" class="alert alert-danger" role="alert">Ingrese una marca correcta</div> 
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="title">Ingrese tamaño de motor</label>
-                <input type="text" class="form-control" name="description" 
-                #newDescription>    
+                <label for="title">Ingrese el tamaño del motor</label>
+                <input type="text" class="form-control" name="description" [(ngModel)]="objetos.description" #description="ngModel"
+                minlength="2" maxlength="4" required required pattern="\d\.\d|\d+">    
+                <div *ngIf="description.touched && !description.valid">
+                    
+                    <div *ngIf="description.errors.required" class="alert alert-danger" role="alert">El tamaño de motor es requerido</div> 
+                    <div *ngIf="description.errors.pattern" class="alert alert-danger" role="alert">Ejemplo: 1.6 o 1600</div> 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Ingrese el año</label>
+                <input type="text" class="form-control" name="tiempo"  [(ngModel)]="objetos.tiempo" #tiempo="ngModel" 
+                minlength="1" maxlength="4" required pattern="(19[0-9][0-9])|(20[0-1][0-9])|(2020)">
+                <div *ngIf="tiempo.touched && !tiempo.valid">
+                 
+                    <div *ngIf="tiempo.errors.required" class="alert alert-danger" role="alert">El año es requerido</div> 
+                    <div *ngIf="tiempo.errors.pattern" class="alert alert-danger" role="alert">Ingrese un año correcto</div> 
+                </div>
             </div>
             <div class="form-group">
-                    <label for="title">Ingrese el año</label>
-                    <input type="text" class="form-control" name="tiempo" 
-                    #newTiempo>    
+                <label for="title">Ingrese los caballos de fuerza</label>
+                <input type="text" class="form-control" name="fuerza" [(ngModel)]="objetos.fuerza" #fuerza="ngModel" 
+                minlength="1" maxlength="5" required pattern="[0-9]+">   
+                <div *ngIf="fuerza.touched && !fuerza.valid">
+                   
+                    <div *ngIf="fuerza.errors.required" class="alert alert-danger" role="alert">La fuerza es requerido</div> 
+                    <div *ngIf="fuerza.errors.pattern" class="alert alert-danger" role="alert">Ingrese un numero correcto</div> 
+                </div> 
             </div>
             <div class="form-group">
-                    <label for="title">Ingrese los caballos de fuerza</label>
-                    <input type="text" class="form-control" name="fuerza" 
-                    #newFuerza>    
-            </div>
-            <div class="form-group">
-                    <label for="title">Tipo de vehiculo</label>
-                    <input type="text" class="form-control" name="tipo" 
-                    #newTipo>    
+                <label for="title">Tipo de vehiculo</label>
+                <input type="text" class="form-control" name="tipo" [(ngModel)]="objetos.tipo" #tipo="ngModel"  
+                minlength="1" maxlength="20" required  pattern="sedan|deportivo|camioneta|hatchback"> 
+                <div *ngIf="tipo.touched && !tipo.valid">
+                   
+                    <div *ngIf="tipo.errors.required" class="alert alert-danger" role="alert">El tipo es requerido</div> 
+                    <div *ngIf="tipo.errors.pattern" class="alert alert-danger" role="alert">Tipo debe ser sedan, deportivo, camioneta, hatchback</div> 
+                </div>   
             </div>
             
-            <button  class="btn btn-primary"> Guardar </button>
+            <button  class="btn btn-primary" style="margin: 10px" > Guardar </button>
+            <div *ngIf="showMyMessage" class="alert alert-danger" role="alert">{{message}}</div> 
+        </form>
+        <form (submit)="updateTask()" >
+            <button  class="btn btn-primary" style="margin: 10px" > Actualizar </button>
+             
         </form>
     </div>
 </div>

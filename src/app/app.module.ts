@@ -10,6 +10,8 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskComponent } from './components/task/task.component';
 
 import { DataService } from './services/data.service'
+import { ReactiveFormsModule } from '@angular/forms';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,15 +19,17 @@ import { DataService } from './services/data.service'
     NavComponent,
     TaskAddComponent,
     TaskListComponent,
-    TaskComponent
+    TaskComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    DataService
+    DataService, TaskAddComponent, TaskComponent
   ],
   bootstrap: [AppComponent]
 })

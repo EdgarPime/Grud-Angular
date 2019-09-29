@@ -50,4 +50,17 @@ export class DataService {
        }
      }
    }
+
+   searchTask(task:Task) {
+    for(let i = 0; i < this.tasks.length; i++){
+      if(task== this.tasks[i]){
+        return i;
+        
+      }
+    }
+   }
+
+   updateTask(i:number, task:Task){
+     localStorage[i].setItem(task);
+   }
 }
