@@ -40,23 +40,29 @@ export class TaskAddComponent implements OnInit {
     
   }
   public showMyMessage = false
+  public showMyMessage2 = false
 
 
   addTask(myForm: NgForm){
     console.log(this.dataService.mostrar)
-    if (myForm.valid === true ) {
+    if (myForm.valid == true) {
     // if (this.objetos.title != "" && this.objetos.description != "" && this.objetos.tiempo != "" && this.objetos.fuerza != "" && this.objetos.tipo != "" ) {
       this.dataService.addTask(this.objetos);
       this.objetos={};
       this.message="Se ingreso correctamente"
+      this.showMyMessage2=true;
+      setTimeout(()=>{
+        this.showMyMessage2=false
+      },3000  );
+     
       myForm.resetForm();
     } else {
-      this.message="Ningun campo puede estar vacio"
+      this.message="Ningun campo puede estar vacio y deben tener la estructura correcta"
 
       this.showMyMessage=true;
       setTimeout(()=>{
         this.showMyMessage=false
-      },3000  );
+      },6000  );
       
     }
     
@@ -64,17 +70,23 @@ export class TaskAddComponent implements OnInit {
   }
 
   updateTask(myForm: NgForm){
-    if (myForm.valid === true ) {
+    
+    if (myForm.valid == true) {
       this.i=this.dataService.indice;
       this.dataService.updateTask(this.i,this.objetos);
       this.objetos={};
-      this.message="Se actualizo correctamente"
-      
+      // this.message="Se actualizo correctamente"
+      // this.showMyMessage2=true;
+      // setTimeout(()=>{
+      //   this.showMyMessage2=false
+      // },3000  );
       myForm.resetForm();
+      this.dataService.mostrar=true
       console.log(this.i)
       console.log(this.dataService.tasks[this.i]);
 
-    }
+    } 
+    
    
   }
 

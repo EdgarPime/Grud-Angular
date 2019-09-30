@@ -54,9 +54,9 @@
             </div>
             
             <button  class="btn btn-primary" style="margin: 10px" > Guardar </button>
-            <div *ngIf="showMyMessage" class="alert alert-danger" role="alert">{{message}}</div>
-            
             <button  class="btn btn-success" style="margin: 10px" (click)="updateTask(formNew)" > Actualizar </button>
+            <div *ngIf="showMyMessage" class="alert alert-danger" role="alert">{{message}}</div>
+            <div *ngIf="showMyMessage2" class="alert alert-success" role="alert">{{message}}</div>
         </form> 
         <!-- <form (submit)="updateTask(formNew)"  #formNew="ngForm">
                 <button  class="btn btn-success" name="hello" [hidden]="mostrar"  style="margin: 10px" > Actualizar </button>  

@@ -20,7 +20,7 @@ export class TaskComponent implements OnInit {
 
   
   removeTask(task: Task) {
-    if(confirm('Quieres eliminarlo')){
+    if(confirm('Estas seguro de eliminarlo')){
       this.dataService.removeTask(task);
 
     }
@@ -28,10 +28,13 @@ export class TaskComponent implements OnInit {
   }
 
   searchTask(task: Task){
-    this.dataService.searchTask(task);
-    console.log(this.dataService.indice)
-    this.dataService.mostrar=false;
-    console.log(this.dataService.mostrar)
+    if(confirm('Estas seguro de actualizarlo')){
+      this.dataService.searchTask(task);
+      console.log(this.dataService.indice)
+      this.dataService.mostrar=false;
+      console.log(this.dataService.mostrar)
+    }
+    
   }
 
   

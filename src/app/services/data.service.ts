@@ -8,7 +8,7 @@ import { Task } from '../models/task';
 export class DataService {
   tasks: Task[];
   public indice:number;
-  public mostrar:boolean=false;
+  public mostrar:boolean=true;
 
   constructor() {
     this.tasks= [
