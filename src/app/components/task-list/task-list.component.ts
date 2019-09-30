@@ -12,6 +12,7 @@ import { NumberValueAccessor } from '@angular/forms';
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[];
+  @Output() eventClicked = new EventEmitter<Task>();
 
   constructor(public dataService: DataService) {  }
 
@@ -20,7 +21,16 @@ export class TaskListComponent implements OnInit {
     
   }
 
+  public clickedEvent: Task;
+
+  childEventClicked(task: Task) {
+    this.clickedEvent = task;
+    console.log(task)
+    this.eventClicked.emit(task)
+  }
   
+  
+
   
 
   // addTask(task: Task){

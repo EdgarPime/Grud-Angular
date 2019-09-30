@@ -18,7 +18,7 @@
                     <td> {{task.fuerza}} </td>
                     <td> {{task.tipo}} </td>
                     <td> 
-                            <app-task [task]="task" ></app-task>
+                            <app-task [task]="task" (eventClicked)="childEventClicked($event)"></app-task>
                            
                     </td>
                   </tr>

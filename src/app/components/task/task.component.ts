@@ -11,6 +11,8 @@ import { TaskAddComponent } from '../task-add/task-add.component';
 })
 export class TaskComponent implements OnInit {
   @Input() task: Task;
+  @Output() eventClicked = new EventEmitter<Task>();
+
  
   i:number
 
@@ -18,7 +20,12 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+  onClick(task: Task) {
+    this.eventClicked.emit(task);
+    console.log(task)
+    
+  }
+
   removeTask(task: Task) {
     if(confirm('Estas seguro de eliminarlo')){
       this.dataService.removeTask(task);
@@ -30,9 +37,9 @@ export class TaskComponent implements OnInit {
   searchTask(task: Task){
     if(confirm('Estas seguro de actualizarlo')){
       this.dataService.searchTask(task);
-      console.log(this.dataService.indice)
+      // console.log(this.dataService.indice)
       this.dataService.mostrar=false;
-      console.log(this.dataService.mostrar)
+      // console.log(this.dataService.mostrar)
     }
     
   }

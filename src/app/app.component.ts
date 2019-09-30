@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './models/task'
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'GRUD-angular';
  
+  public clickedEvent: Task;
 
+  childEventClicked(task: Task) {
+    this.clickedEvent = task;
+    console.log(task)
+  }
   
 
 }

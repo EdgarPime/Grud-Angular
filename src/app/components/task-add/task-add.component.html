@@ -1,9 +1,9 @@
-<div class="card bg-dark text-white">
+<div class="card bg-dark text-white" >
     <div class="card-body">
         <form  (submit)="addTask(formNew)" #formNew="ngForm" >
             <div class="form-group">
                 <label for="title">Ingrese la Marca</label>
-                <input type="text" class="form-control"  name="title" [(ngModel)]="objetos.title" #title="ngModel"
+                <input type="text" class="form-control"  name="title" [(ngModel)]="objetos.title" #title="ngModel" 
                 minlength="2" maxlength="30" required pattern="[A-Z_a-z]+">    
                 <div *ngIf="title.touched && !title.valid">
                    

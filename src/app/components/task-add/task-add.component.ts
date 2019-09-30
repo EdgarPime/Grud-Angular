@@ -13,21 +13,21 @@ import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular
 })
 export class TaskAddComponent implements OnInit {
   
+  @Input() objetos:Task
 
-
-  public objetos: any;
+  //public objetos: any;
   i:number;
   message:string
   mostrar: boolean=this.dataService.mostrar;
   
  
-  constructor( public dataService: DataService, public taskComponent:TaskComponent) {
-  
+  constructor( public dataService: DataService) {
+   
    }
   
  
   ngOnInit() {
-    this.objetos=this.dataService.tasks[this.i];
+    
     this.objetos = {
       title: '' ,
       description: '',
@@ -36,7 +36,14 @@ export class TaskAddComponent implements OnInit {
       tipo:''
 
     }
-   
+      if(this.objetos!=undefined)
+      {
+        console.log(this.objetos)
+        this.objetos=this.objetos
+      }
+
+     // this.i=this.dataService.indice
+     
     
   }
   public showMyMessage = false
@@ -44,11 +51,18 @@ export class TaskAddComponent implements OnInit {
 
 
   addTask(myForm: NgForm){
-    console.log(this.dataService.mostrar)
+   
     if (myForm.valid == true) {
     // if (this.objetos.title != "" && this.objetos.description != "" && this.objetos.tiempo != "" && this.objetos.fuerza != "" && this.objetos.tipo != "" ) {
       this.dataService.addTask(this.objetos);
-      this.objetos={};
+      this.objetos = {
+        title: '' ,
+        description: '',
+        tiempo: '',
+        fuerza:'',
+        tipo:''
+  
+      }
       this.message="Se ingreso correctamente"
       this.showMyMessage2=true;
       setTimeout(()=>{
@@ -74,7 +88,15 @@ export class TaskAddComponent implements OnInit {
     if (myForm.valid == true) {
       this.i=this.dataService.indice;
       this.dataService.updateTask(this.i,this.objetos);
-      this.objetos={};
+      this.objetos = {
+        title: '' ,
+        description: '',
+        tiempo: '',
+        fuerza:'',
+        tipo:''
+  
+      }
+      // this.dataService.indice=null;
       // this.message="Se actualizo correctamente"
       // this.showMyMessage2=true;
       // setTimeout(()=>{
@@ -82,10 +104,10 @@ export class TaskAddComponent implements OnInit {
       // },3000  );
       myForm.resetForm();
       this.dataService.mostrar=true
-      console.log(this.i)
+      
       console.log(this.dataService.tasks[this.i]);
 
-    } 
+    } 					
     
    
   }
