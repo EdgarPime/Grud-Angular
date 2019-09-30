@@ -11,7 +11,8 @@ import { TaskComponent } from './components/task/task.component';
 
 import { DataService } from './services/data.service'
 import { ReactiveFormsModule } from '@angular/forms';
-import { TaskEditComponent } from './task-edit/task-edit.component';
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
     TaskAddComponent,
     TaskListComponent,
     TaskComponent,
-    TaskEditComponent
+ 
+   
   ],
   imports: [
     BrowserModule,
