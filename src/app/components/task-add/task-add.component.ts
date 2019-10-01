@@ -99,7 +99,13 @@ export class TaskAddComponent implements OnInit {
       myForm.resetForm();
       this.dataService.mostrar=true
 
-    } else {
+    } else if( myForm.valid == false && this.dataService.mostrar==false ) {
+      this.message="Revise que todos los campos esten correctos y completos";
+      this.showMyMessage=true;
+      setTimeout(()=>{
+      this.showMyMessage=false;
+      },4000  );
+  } else {
       this.message="No ha seleccionado un elemento para editar";
       this.showMyMessage=true;
       setTimeout(()=>{
