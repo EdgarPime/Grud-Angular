@@ -36,14 +36,7 @@ export class TaskAddComponent implements OnInit {
       tipo:''
 
     }
-      if(this.objetos!=undefined)
-      {
-        console.log(this.objetos)
-        this.objetos=this.objetos
-      }
-
-     // this.i=this.dataService.indice
-     
+    
     
   }
   public showMyMessage = false
@@ -71,7 +64,7 @@ export class TaskAddComponent implements OnInit {
      
       myForm.resetForm();
     } else {
-      this.message="Ningun campo puede estar vacio y deben tener la estructura correcta"
+      this.message="Revise que todos los campos esten correctos y completos";
 
       this.showMyMessage=true;
       setTimeout(()=>{
@@ -85,7 +78,7 @@ export class TaskAddComponent implements OnInit {
 
   updateTask(myForm: NgForm){
     
-    if (myForm.valid == true) {
+    if (myForm.valid == true && this.dataService.mostrar==false) {
       this.i=this.dataService.indice;
       this.dataService.updateTask(this.i,this.objetos);
       this.objetos = {
@@ -95,19 +88,24 @@ export class TaskAddComponent implements OnInit {
         fuerza:'',
         tipo:''
   
-      }
+      } 
+      this.dataService.indice=undefined;
       // this.dataService.indice=null;
-      // this.message="Se actualizo correctamente"
-      // this.showMyMessage2=true;
-      // setTimeout(()=>{
-      //   this.showMyMessage2=false
-      // },3000  );
+      this.message="Se actualizo correctamente"
+      this.showMyMessage2=true;
+      setTimeout(()=>{
+        this.showMyMessage2=false
+      },3000  );
       myForm.resetForm();
       this.dataService.mostrar=true
-      
-      console.log(this.dataService.tasks[this.i]);
 
-    } 					
+    } else {
+      this.message="No ha seleccionado un elemento para editar";
+      this.showMyMessage=true;
+      setTimeout(()=>{
+      this.showMyMessage=false;
+      },4000  );
+  }
     
    
   }
