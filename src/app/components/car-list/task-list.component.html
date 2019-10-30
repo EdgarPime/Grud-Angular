@@ -1,4 +1,4 @@
-
+<form   #formNew="ngForm" >
 <table class="table table-dark">
                 <thead>
                   <tr>
@@ -11,14 +11,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let task of tasks">
-                    <td> {{task.title}} </td>
-                    <td> {{task.description}} </td>
-                    <td> {{task.tiempo}} </td>
-                    <td> {{task.fuerza}} </td>
-                    <td> {{task.tipo}} </td>
+                  <tr *ngFor="let car of dataService.cars">
+                    <td> {{car.marca}} </td>
+                    <td> {{car.motor}} </td>
+                    <td> {{car.tiempo}} </td>
+                    <td> {{car.fuerza}} </td>
+                    <td> {{car.tipo}} </td>
                     <td> 
-                            <app-task [task]="task" (eventClicked)="childEventClicked($event)"></app-task>
+                            <app-task [car]="car" (eventClicked)="childEventClicked($event)" (actualizar)="updateTable($event)"></app-task>
                            
                     </td>
                   </tr>
@@ -27,5 +27,4 @@
                 </tbody>
               </table>
 
-
-
+      </form>

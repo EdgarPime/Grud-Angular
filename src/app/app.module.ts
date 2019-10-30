@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
-import { TaskAddComponent } from './components/task-add/task-add.component';
-import { TaskListComponent } from './components/task-list/task-list.component';
-import { TaskComponent } from './components/task/task.component';
+import { TaskAddComponent } from './components/car-add/task-add.component';
+import { TaskListComponent } from './components/car-list/task-list.component';
+import { TaskComponent } from './components/car/task.component';
 
 import { DataService } from './services/data.service'
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,17 +22,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     TaskAddComponent,
     TaskListComponent,
     TaskComponent,
- 
+    
    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+    
   ],
   providers: [
-    DataService, TaskAddComponent, TaskComponent
+    DataService, TaskAddComponent, TaskComponent, TaskListComponent,
   ],
   bootstrap: [AppComponent]
 })

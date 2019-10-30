@@ -1,9 +1,10 @@
 <div class="card bg-dark text-white" >
     <div class="card-body">
         <form   #formNew="ngForm" >
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="objetos._id">
             <div class="form-group">
                 <label for="title">Ingrese la Marca</label>
-                <input type="text" class="form-control"  name="title" [(ngModel)]="objetos.title" #title="ngModel" 
+                <input type="text" class="form-control"  name="marca" [(ngModel)]="objetos.marca" #title="ngModel" 
                 minlength="2" maxlength="30" required pattern="[A-Z_a-z]+">    
                 <div *ngIf="title.touched && !title.valid">
                    
@@ -14,7 +15,7 @@
 
             <div class="form-group">
                 <label for="title">Ingrese el tamaño del motor</label>
-                <input type="text" class="form-control" name="description" [(ngModel)]="objetos.description" #description="ngModel"
+                <input type="text" class="form-control" name="motor" [(ngModel)]="objetos.motor" #description="ngModel"
                 minlength="2" maxlength="4" required required pattern="\d\.\d|\d+">    
                 <div *ngIf="description.touched && !description.valid">
                     

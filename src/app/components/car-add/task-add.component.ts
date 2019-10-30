@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 
-import { Task } from '../../models/task'
+import { Car } from '../../models/car'
 import { DataService } from '../../services/data.service';
 import { Data } from '@angular/router';
-import { TaskComponent } from '../task/task.component';
+import { TaskComponent } from '../car/task.component';
 import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular/forms';
+import { TaskListComponent} from '../car-list/task-list.component'
 
 @Component({
   selector: 'app-task-add', 
@@ -13,15 +14,14 @@ import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular
 })
 export class TaskAddComponent implements OnInit {
   
-  @Input() objetos:Task
-
-  //public objetos: any;
+  @Input() objetos:Car
+ 
   i:number;
   message:string
   mostrar: boolean=this.dataService.mostrar;
   
  
-  constructor( public dataService: DataService) {
+  constructor( public dataService: DataService, public taskList: TaskListComponent) {
    
    }
   
@@ -29,8 +29,9 @@ export class TaskAddComponent implements OnInit {
   ngOnInit() {
     
     this.objetos = {
-      title: '' ,
-      description: '',
+      _id: '',
+      marca: '' ,
+      motor: '',
       tiempo: '',
       fuerza:'',
       tipo:''
@@ -38,31 +39,31 @@ export class TaskAddComponent implements OnInit {
     }
     
     
+    
   }
   public showMyMessage = false
   public showMyMessage2 = false
-
 
   addTask(myForm: NgForm){
    
     if (myForm.valid == true) {
     // if (this.objetos.title != "" && this.objetos.description != "" && this.objetos.tiempo != "" && this.objetos.fuerza != "" && this.objetos.tipo != "" ) {
-      this.dataService.addTask(this.objetos);
-      this.objetos = {
-        title: '' ,
-        description: '',
-        tiempo: '',
-        fuerza:'',
-        tipo:''
-  
-      }
+      // this.dataService.addTask(this.objetos);
+      this.dataService.postCar(this.objetos).subscribe((res) => {
+        this.dataService.refreshCarList();
+      })
+      
+      
       this.message="Se ingreso correctamente"
       this.showMyMessage2=true;
       setTimeout(()=>{
         this.showMyMessage2=false
       },3000  );
-     
+      
       myForm.resetForm();
+      // this.update.emit(this.dataService.getTask());
+      
+     
     } else {
       this.message="Revise que todos los campos esten correctos y completos";
 
@@ -80,15 +81,14 @@ export class TaskAddComponent implements OnInit {
     
     if (myForm.valid == true && this.dataService.mostrar==false) {
       this.i=this.dataService.indice;
-      this.dataService.updateTask(this.i,this.objetos);
-      this.objetos = {
-        title: '' ,
-        description: '',
-        tiempo: '',
-        fuerza:'',
-        tipo:''
-  
-      } 
+      // this.dataService.updateTask(this.i,this.objetos);
+      
+      this.dataService.putCar(this.objetos).subscribe((res) => {
+        myForm.resetForm();
+        this.dataService.refreshCarList();
+      });
+
+     
       this.dataService.indice=undefined;
       // this.dataService.indice=null;
       this.message="Se actualizo correctamente"
@@ -96,7 +96,7 @@ export class TaskAddComponent implements OnInit {
       setTimeout(()=>{
         this.showMyMessage2=false
       },3000  );
-      myForm.resetForm();
+      
       this.dataService.mostrar=true
 
     } else if( myForm.valid == false && this.dataService.mostrar==false ) {
@@ -115,7 +115,6 @@ export class TaskAddComponent implements OnInit {
     
    
   }
-
 
 
 }

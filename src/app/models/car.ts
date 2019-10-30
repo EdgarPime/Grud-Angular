@@ -1,6 +1,7 @@
-export interface Task {
-    title: string;
-    description: string;
+export interface Car {
+    _id: string;
+    marca: string;
+    motor: string;
     tiempo: string;
     fuerza: string;
     tipo: string;

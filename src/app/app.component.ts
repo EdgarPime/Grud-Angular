@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Task } from './models/task'
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Car } from './models/car'
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,13 @@ import { Task } from './models/task'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'GRUD-angular';
  
-  public clickedEvent: Task;
+  title = 'GRUD-angular';
 
-  childEventClicked(task: Task) {
+ 
+  public clickedEvent: Car;
+
+  childEventClicked(task: Car) {
     this.clickedEvent = task;
     console.log(task)
   }
