@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Car } from '../models/car';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,14 @@ export class DataService {
   cars: Car[];
   public indice:number;
   public mostrar:boolean=true;
-  readonly baseURL = 'http://localhost:3000/api/v1/cars';
+  baseURL: string = environment.url;
 
   constructor(private http: HttpClient) {
-
+    console.log(this.baseURL)
     this.cars= [
-      // {title: 'write', description: 'i have to write'},
-      // {title: 'write', description: 'i have to write'}
+      
     ];
 
-    this.indice;
    }
    
    refreshCarList() {

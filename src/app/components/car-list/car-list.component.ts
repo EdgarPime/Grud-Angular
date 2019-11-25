@@ -2,14 +2,13 @@ import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
 
 import { Car } from '../../models/car'
 import { DataService } from '../../services/data.service';
-import { NumberValueAccessor } from '@angular/forms';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular/forms';
+import { NgForm} from '@angular/forms';
 
 
 @Component({
   selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  templateUrl: './car-list.component.html',
+  styleUrls: ['./car-list.component.css']
 })
 export class TaskListComponent implements OnInit {
   cars: Car[];

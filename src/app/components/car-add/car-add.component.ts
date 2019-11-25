@@ -2,15 +2,13 @@ import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 
 import { Car } from '../../models/car'
 import { DataService } from '../../services/data.service';
-import { Data } from '@angular/router';
-import { TaskComponent } from '../car/task.component';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm} from '@angular/forms';
-import { TaskListComponent} from '../car-list/task-list.component'
+import { NgForm} from '@angular/forms';
+import { TaskListComponent} from '../car-list/car-list.component'
 
 @Component({
   selector: 'app-task-add', 
-  templateUrl: './task-add.component.html',
-  styleUrls: ['./task-add.component.css']
+  templateUrl: './car-add.component.html',
+  styleUrls: ['./car-add.component.css']
 })
 export class TaskAddComponent implements OnInit {
   
@@ -47,21 +45,19 @@ export class TaskAddComponent implements OnInit {
   addTask(myForm: NgForm){
    
     if (myForm.valid == true) {
-    // if (this.objetos.title != "" && this.objetos.description != "" && this.objetos.tiempo != "" && this.objetos.fuerza != "" && this.objetos.tipo != "" ) {
-      // this.dataService.addTask(this.objetos);
+   
       this.dataService.postCar(this.objetos).subscribe((res) => {
         this.dataService.refreshCarList();
+
+        this.message="Se ingreso correctamente"
+        this.showMyMessage2=true;
+        setTimeout(()=>{
+          this.showMyMessage2=false
+        },3000  );
+        
+        myForm.resetForm();
       })
-      
-      
-      this.message="Se ingreso correctamente"
-      this.showMyMessage2=true;
-      setTimeout(()=>{
-        this.showMyMessage2=false
-      },3000  );
-      
-      myForm.resetForm();
-      // this.update.emit(this.dataService.getTask());
+    
       
      
     } else {
@@ -80,24 +76,20 @@ export class TaskAddComponent implements OnInit {
   updateTask(myForm: NgForm){
     
     if (myForm.valid == true && this.dataService.mostrar==false) {
-      this.i=this.dataService.indice;
-      // this.dataService.updateTask(this.i,this.objetos);
       
       this.dataService.putCar(this.objetos).subscribe((res) => {
         myForm.resetForm();
         this.dataService.refreshCarList();
+        
+        this.message="Se actualizo correctamente"
+        this.showMyMessage2=true;
+        setTimeout(()=>{
+          this.showMyMessage2=false
+        },3000  );
+        
+        this.dataService.mostrar=true
       });
 
-     
-      this.dataService.indice=undefined;
-      // this.dataService.indice=null;
-      this.message="Se actualizo correctamente"
-      this.showMyMessage2=true;
-      setTimeout(()=>{
-        this.showMyMessage2=false
-      },3000  );
-      
-      this.dataService.mostrar=true
 
     } else if( myForm.valid == false && this.dataService.mostrar==false ) {
       this.message="Revise que todos los campos esten correctos y completos";

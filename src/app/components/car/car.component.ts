@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Car } from '../../models/car';
 import { DataService } from '../../services/data.service';
-import { TaskAddComponent } from '../car-add/task-add.component';
+
 
 
 @Component({
   selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  templateUrl: './car.component.html',
+  styleUrls: ['./car.component.css']
 })
 export class TaskComponent implements OnInit {
   @Input() car: Car;
